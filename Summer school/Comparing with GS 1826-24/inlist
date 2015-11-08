@@ -7,8 +7,8 @@
       read_extra_star_job_inlist2 = .true.
       extra_star_job_inlist2_name = 'inlist_ns_h'
 
-      change_initial_set = .true.
-      new_set_name = 'rp.net'
+      change_initial_net = .true.
+      new_net_name = 'rp.net'
 
 / ! end of star_job namelist
 

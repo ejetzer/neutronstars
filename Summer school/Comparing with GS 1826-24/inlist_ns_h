@@ -23,7 +23,7 @@
       kappa_file_prefix = 'gs98'
       
 
-      !pgstar_flag = .true.
+      pgstar_flag = .true.
 
 
 

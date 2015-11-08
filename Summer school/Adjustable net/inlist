@@ -8,7 +8,7 @@
       extra_star_job_inlist2_name = 'inlist_ns_h'
 
       !change_initial_set = .true.
-      new_set_name = 'rp.net'
+      new_net_name = 'rp.net'
 
         enable_adaptive_network = .true.        min_x_for_keep = 1d-4        min_x_for_n = 1d-3        min_x_for_add = 1d-3        max_Z_for_add = 16        max_N_for_add = 16        max_A_for_add = 32
 

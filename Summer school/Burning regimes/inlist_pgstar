@@ -69,7 +69,7 @@
          Abundance_log_mass_frac_max = 0.3
          
          ! file output
-         Abundance_file_flag = .false.
+         Abundance_file_flag = .true.
          Abundance_file_dir = 'png'
          Abundance_file_prefix = 'abund_'
          Abundance_file_cnt = 5 ! output when mod(model_number,Abundance_file_cnt)==0
@@ -180,7 +180,7 @@
          History_Track1_fname = '' ! file name for extra track data
          
          ! file output
-         History_Track1_file_flag = .false.
+         History_Track1_file_flag = .true.
          History_Track1_file_dir = 'png'
          History_Track1_file_prefix = 'track1_'
          History_Track1_file_cnt = 5 ! output when mod(model_number,History_Track1_file_cnt)==0
@@ -267,7 +267,7 @@
 
          
          ! file output
-         Grid1_file_flag = .false.
+         Grid1_file_flag = .true.
          Grid1_file_dir = 'png'
          Grid1_file_prefix = 'grid1_'
          Grid1_file_cnt = 5 ! output when mod(model_number,Grid1_file_cnt)==0
