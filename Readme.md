@@ -1,6 +1,8 @@
 
 
-    import matplotlib.pylab as plt
+```python
+import matplotlib.pylab as plt, spinmob, subprocess, os, glob
+```
 
 # Simulating neutron stars
 
@@ -15,6 +17,18 @@ Results and experiments in simulating neutron stars with [MESA](http://mesa.sour
 - Compare the following with results from the 2007 Peng paper (by Friday November 21)
     - Sedimentation & accretion velocities
     - Figures of one zone model
+
+
+```python
+# defined in Utilities/rn.py
+def rn(path):
+    currdir = os.getcwd()
+    os.chdir(path)
+    subprocess.call('./mk')
+    subprocess.call('./rn')
+    subprocess.call('images_to_movie.sh \'png/grid1_*.png\' mp4/grid1.mp4')
+    os.chdir(currdir)
+```
 
 ## Summer School Lecture
 
@@ -41,6 +55,22 @@ The lecture can [be found on the MESA website](http://mesastar.org/teaching-mate
 - What is the luminosity between bursts?
 - Do all the bursts in a sequence look the same? How many bursts have to happen before the model gets into a steady state?
 - How does the number of zones and the timestep change with time?
+
+
+```python
+MODEL = 'accretion_rate_model/'
+OUT = 'accretion_rate_{}/'
+def make_models(start=2e-8, end=2e-11, N=10, model=MODEL, out=OUT, run=False):
+    start, end = plt.log(start), plt.log(end)
+    accretion_rates = plt.exp(plt.linspace(start, end, N))
+    with open(model+'inlist_ns_h', 'r') as model:
+        model = model.read()
+    for rate in accretion_rates:
+        subprocess.call('cp -r {} {}'.format(model, out.format(rate)), shell=True)
+        with open(out.format(rate)+'inlist_ns_h', 'w') as inlist:
+            inlist.write(model.format(rate))
+        if run: rn('{}'.format(out.format(rate)))
+```
 
 ### Extras
 
@@ -82,18 +112,13 @@ The lecture can [be found on the MESA website](http://mesastar.org/teaching-mate
 ## Various accretion rates
 
 
-    MODEL = 'inlist_ns_h_model'
-    OUT = 'accretion_rate_{}/inlist_ns_h'
-    def make_inlists(start=2e-10, end=2e-11, N=10, model=MODEL, out=OUT):
-        start, end = plt.log(start), plt.log(end)
-        accretion_rates = plt.exp(plt.linspace(start, end, N))
-        with open(model, 'r') as model:
-            model = model.read()
-        for rate in accretion_rates:
-            with open(out.format(rate), 'w') as inlist:
-                inlist.write(model.format(rate))
+```python
+# make_models(...)
+```
 
 ## Comparisons to figures & paper
 
 
-    
+```python
+
+```
