@@ -72,7 +72,7 @@
       use_Type2_opacities = .true.
       Zbase = 0.02d0
 
-      photostep = 50
+      photostep = 10
       profile_interval = 100
       history_interval = 1
       terminal_cnt = 10

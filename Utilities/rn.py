@@ -28,7 +28,12 @@ into a movie.'
         try:
             code = subprocess.call('./rn', shell=True)
         except KeyboardInterrupt:
-            code = subprocess.call('./re x{:03d}'.format(re))
+            cmd = './re x{:03d}'.format(re)
+            yield 'Restarting with photo x{:03d}'.format(re)
+            try:
+                code = subprocess.call(cmd, shell=True)
+            except KeyboardInterrupt:
+                pass
         yield 'Ran (exited with status {})!'.format(code)
     if movie:
         yield 'Making movie...'
@@ -46,6 +51,7 @@ if __name__ == '__main__':
     if '--re' in sys.argv:
         index = sys.argv.index('--re') + 1
         re = int(sys.argv[index])
+        print('Will restart at x{:03d}'.format(re))
     if '--no-rn' in sys.argv: run = False
     if '--no-mk' in sys.argv: make = False
     if '--movie' in sys.argv: movie = True
