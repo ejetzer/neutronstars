@@ -7,6 +7,7 @@ Created on Sun Nov  8 15:05:58 2015
 """
 
 import matplotlib.pylab as plt, spinmob, subprocess, os, glob, sys
+import make_all_movies
 
 def rn(path='.', make=True, run=True, movie=True):
     'Makes & runs a MESA model, and transforms the produced images \
@@ -24,8 +25,8 @@ into a movie.'
         yield 'Ran (exited with status {})!'.format(code)
     if movie:
         yield 'Making movie...'
-        cmd = 'images_to_movie.sh \'png/grid1_*.png\' mp4/grid1.mp4'
-        code = subprocess.call(cmd, shell=True)
+        make_all_movies.make_movies('.', fmt='mp4')
+        make_all_movies.make_movies('.', fmt='gif')
         yield 'Movie made (exited with status {})!'.format(code)
     yield 'Moving back to \'{}\'.'.format(currdir)
     os.chdir(currdir)
