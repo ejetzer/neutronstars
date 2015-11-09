@@ -4,4 +4,4 @@
 *.mp4 # These files can be huge, and it's no use to upload them.
 # *.gif # I want to be able to hotlink to the gifs...
 
-*/photos/*
+x*
