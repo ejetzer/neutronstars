@@ -54,7 +54,7 @@
 
       show_diffusion_info = .true.
 
-      diffusion_v_max = 1d-5 ! 1.0
+      diffusion_v_max = 1.0 !1d-5 ! 1.0
 
 
       ! check for retries and backups as part of test_suite
@@ -72,7 +72,7 @@
       use_Type2_opacities = .true.
       Zbase = 0.02d0
 
-      photostep = 50
+      photostep = 10
       profile_interval = 100
       history_interval = 1
       terminal_cnt = 10
