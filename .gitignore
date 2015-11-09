@@ -1,0 +1,7 @@
+# Files to ignore!
+
+*.png # There are so many of these that it's silly to copy them all
+*.mp4 # These files can be huge, and it's no use to upload them.
+# *.gif # I want to be able to hotlink to the gifs...
+
+*/photos/*
