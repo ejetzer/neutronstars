@@ -6,8 +6,7 @@ Generate variations on a MESA model.
 @author: ejetzer
 '''
 
-import matplotlib.pylab as plt, spinmob, subprocess, os, glob,\
-       sys, shutil
+import subprocess, os, glob, sys, shutil
 import rn
 
 MODEL = 'Model/'

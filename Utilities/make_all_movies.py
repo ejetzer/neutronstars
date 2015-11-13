@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import matplotlib.pylab as plt, sys, spinmob, subprocess, os, glob, os.path
+import sys, subprocess, os, glob, os.path
 
 def make_movies(path, src='grid1', fmt='mp4'):
     # Output file name
