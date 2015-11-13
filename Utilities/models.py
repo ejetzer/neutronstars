@@ -6,7 +6,7 @@ Generate variations on a MESA model.
 @author: ejetzer
 '''
 
-import subprocess, os, glob, sys, shutil
+import subprocess, os, glob, sys, shutil, numpy
 import rn
 
 MODEL = 'Model/'
@@ -14,9 +14,9 @@ OUT = 'Rate {:02.2e}/'
 
 def make_models(start=2e-8, end=2e-11, N=15, model=MODEL, out=OUT,
                 run=False, copy=True, **kargs):
-    start, end = plt.log(start), plt.log(end)
+    start, end = numpy.log(start), numpy.log(end)
     yield 'Will generate models with `mass_change` from {} to {}'.format(start, end)
-    accretion_rates = plt.exp(plt.linspace(start, end, N))
+    accretion_rates = numpy.exp(numpy.linspace(start, end, N))
     yield '`mass_change` in {}'.format(accretion_rates)
     yield 'Reading model from \'{}\''.format(model)
     with open(model+'inlist_ns_h', 'r') as model_file:
