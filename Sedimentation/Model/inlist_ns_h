@@ -12,7 +12,8 @@
 
       write_profile_when_terminate = .true.
       filename_for_profile_when_terminate = 'final_profile.data'
-
+    
+     steps_to_take_before_terminate = 10 ! Changed automatically by rn.py
 
       change_net = .true.
 !      change_initial_net = .true.
@@ -55,6 +56,8 @@
       show_diffusion_info = .true.
 
       diffusion_v_max = 1.0
+      
+      max_age = 10 ! 10 years of simulation
 
 
       ! check for retries and backups as part of test_suite
@@ -119,7 +122,7 @@
 
 		! peng have 0.71, 0.27, 0.01 12c 0.01 16o
 
-      mass_change = {} ! rate of accretion (Msun/year)
+      mass_change = {:03.5e} ! rate of accretion (Msun/year)
       max_years_for_timestep = 3d-4
 
       ! FOR DEBUGGING

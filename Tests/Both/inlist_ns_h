@@ -12,7 +12,8 @@
 
       write_profile_when_terminate = .true.
       filename_for_profile_when_terminate = 'final_profile.data'
-
+    
+     steps_to_take_before_terminate = 10 ! Changed automatically by rn.py
 
       change_net = .true.
 !      change_initial_net = .true.
@@ -48,7 +49,7 @@
 	use_other_pgstar_plots = .true.
   use_other_D_mix = .false.
 
-    do_element_diffusion = .true. ! .false. ! Activate after a few seconds of running.
+    do_element_diffusion = .false. ! .false. ! Activate after a few seconds of running.
      diffusion_dt_limit = 0.0
       diffusion_min_dq_at_surface = 1d-16
 

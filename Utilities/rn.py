@@ -7,8 +7,9 @@ Created on Sun Nov  8 15:05:58 2015
 """
 from __future__ import print_function
 
-import matplotlib.pylab as plt, spinmob, subprocess, os, glob, sys
+import subprocess, os, glob, sys
 import make_all_movies
+import update_inlist
 
 def rn(path='.', make=True, run=True, movie=True, re=0):
     'Makes & runs a MESA model, and transforms the produced images \
@@ -25,16 +26,30 @@ into a movie.'
         imgs = glob.glob('png/*')
         for img in imgs: os.remove(img)
         yield 'Runnning...'
+        update_inlist.replace('do_element_diffusion = .true.',
+                              'do_element_diffusion = .false.')
+        update_inlist.replace('steps_to_take_before_terminate = -1',
+                    'steps_to_take_before_terminate = {}'.format(re))
         try:
             code = subprocess.call('./rn', shell=True)
         except KeyboardInterrupt:
-            cmd = './re x{:03d}'.format(re)
-            yield 'Restarting with photo x{:03d}'.format(re)
-            try:
-                code = subprocess.call(cmd, shell=True)
-            except KeyboardInterrupt:
-                pass
+            yield 'Exited ./rn'
+        cmd = './re x{:03d}'.format(re)
+        update_inlist.replace('do_element_diffusion = .false.',
+                              'do_element_diffusion = .true.')
+        update_inlist.replace(
+                    'steps_to_take_before_terminate = {}'.format(re),
+                    'steps_to_take_before_terminate = -1')
+        yield 'Restarting with photo x{:03d}'.format(re)
+        try:
+            code = subprocess.call(cmd, shell=True)
+        except KeyboardInterrupt:
+            yield 'Exited ./re'
         yield 'Ran (exited with status {})!'.format(code)
+        update_inlist.replace('do_element_diffusion = .true.',
+                              'do_element_diffusion = .false.')
+        update_inlist.replace('steps_to_take_before_terminate = -1',
+                    'steps_to_take_before_terminate = {}'.format(re))
     if movie:
         yield 'Making movie...'
         make_all_movies.make_movies('.', fmt='mp4')
@@ -55,5 +70,5 @@ if __name__ == '__main__':
     if '--no-rn' in sys.argv: run = False
     if '--no-mk' in sys.argv: make = False
     if '--movie' in sys.argv: movie = True
-    for message in rn(path, make, run, movie):
+    for message in rn(path, make, run, movie, re):
         print(message)
