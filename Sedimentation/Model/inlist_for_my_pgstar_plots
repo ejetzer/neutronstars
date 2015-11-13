@@ -1,6 +1,6 @@
 ﻿&my_pgstar
 
-         burst_win_flag = .true.
+         burst_win_flag = .false.
 
          burst_win_width = 6
          burst_win_aspect_ratio = 1.0 ! aspect_ratio = height/width
@@ -18,8 +18,8 @@
          redshift=1.26
          
          ! file output
-         burst_file_flag = .false.
-         burst_file_dir = 'pgstar_out'
+         burst_file_flag = .true.
+         burst_file_dir = 'png'
          burst_file_prefix = 'burst_'
          burst_file_cnt = 5 ! output when mod(model_number,burst_file_cnt)==0
          burst_file_width = -1 ! negative means use same value as for window
@@ -63,8 +63,8 @@
          base_layer='fe56'
          
          ! file output
-         net_file_flag = .false.
-         net_file_dir = 'pgstar_out'
+         net_file_flag = .true.
+         net_file_dir = 'png'
          net_file_prefix = 'net_'
          net_file_cnt = 5 ! output when mod(model_number,net_file_cnt)==0
          net_file_width = -1 ! negative means use same value as for window
