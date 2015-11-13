@@ -57,7 +57,7 @@
 
       diffusion_v_max = 1.0
       
-      max_age = 0.006 ! 2 days of simulation
+      max_age_in_seconds = 36000 ! 10 hours of simulation
 
 
       ! check for retries and backups as part of test_suite
